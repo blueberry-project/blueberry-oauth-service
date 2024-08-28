@@ -8,7 +8,7 @@ class EmailSMTP:
         self._sender_email : str = "blueberryproject.pi@gmail.com"
         self.receiver_email : str = "gustavo.antonio@sptech.school, rafael.raposo@sptech.school, matheus.gomes@sptech.school, davi.guilherme@sptech.school"
         self.subject : str = ""
-        self._password = "geos nwng sqco ygya"  
+        self._password = ""  
         self.text=""
 
     def send_email(self) : 
