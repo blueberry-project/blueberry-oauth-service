@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autenticação de Dois Fatores</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Autenticação de Dois Fatores</h2>
+        <form method="post">
+            <label for="2fa_code">Digite o código 2FA que foi enviado para o seu email</label>
+            <input type="text" id="2fa_code" name="2fa_code" required>
+            <button type="submit">Enviar</button>
+        </form>
+        
+        <p>Código 2FA (apenas para teste): {{ code }}</p>
+    </div>
+</body>
+</html>
