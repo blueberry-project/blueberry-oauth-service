@@ -8,7 +8,7 @@ class EmailSMTP:
         self._sender_email : str = "blueberryproject.pi@gmail.com"
         self.receiver_email : str = "gustavo.antonio@sptech.school, rafael.raposo@sptech.school, matheus.gomes@sptech.school, davi.guilherme@sptech.school"
         self.subject : str = ""
-        self._password = ""  
+        self._password = "geos nwng sqco ygya"  
         self.text=""
 
     def send_email(self) : 
@@ -16,7 +16,6 @@ class EmailSMTP:
         message["From"] = self._sender_email
         message["To"] = self.receiver_email 
         message["Subject"] = self.subject
-        print("Enviando essa porrinha aqui ... ")
         with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
             server.login(self._sender_email, self._password)
             server.sendmail(self._sender_email, self.receiver_email, message.as_string())
