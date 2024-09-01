@@ -1,6 +1,7 @@
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+import { initializeApp} from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
 import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyC912hWJA30SGuCr5fifVL_rcQX6W2t2Y4",
@@ -13,8 +14,8 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {}, auth);
-recaptchaVerifier.render();
+//todo verificar se esta correto o RecaptchaVerifier
+window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {});
 
 const phoneForm = document.getElementById('phoneForm');
 const codeForm = document.getElementById('codeForm');
@@ -24,12 +25,13 @@ const codeInputSection = document.getElementById('codeInputSection');
 let confirmationResult;
 
 phoneForm.addEventListener('submit', async function (e) {
-    //todo: nao consegui testar o metodo de envio aqui, erro type=module dps q importei auth, c node isso se resolvia mas n sei com javascript puro
-    //fix: import declarations may only appear at top level of a module
     e.preventDefault();
     const phoneNumber = document.getElementById('phone').value;
 
     try {
+        console.log(recaptchaVerifier)
+        console.log(phoneNumber)
+        console.log(auth)
         confirmationResult = await signInWithPhoneNumber(auth, phoneNumber, recaptchaVerifier);
         phoneInputSection.classList.add('hidden');
         codeInputSection.classList.remove('hidden');
@@ -53,4 +55,3 @@ codeForm.addEventListener('submit', async function (e) {
         alert('Código incorreto. Tente novamente.');
     }
 });
-  

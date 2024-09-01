@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - IoT Company</title>
+    <title>Login - Blueberry</title>
+    <link rel="icon" type="image/x-icon" href="/assets/Logo.ico">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -13,8 +14,8 @@
         class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full transition-transform duration-500 transform hover:scale-105">
         <div class="flex justify-center mb-8">
             <div class="bg-gray-200 rounded-full h-24 w-24 flex items-center justify-center">
-                <!-- todo:  trocar por svg -->
-                <img src="https://avatars.githubusercontent.com/u/162908027?s=200&v=4"></img>
+                <!-- todo: melhorar o css aqui -->
+                <img src="/assets/Logo.svg"></img>
             </div>
         </div>
         <h2 class="text-2xl font-semibold text-gray-700 text-center mb-6">Faça seu login</h2>
@@ -47,6 +48,7 @@
     function validateLogin() {
         data = isDataValid()
         if (data) {
+
             isDataInAPI()
         }
         else {
@@ -81,8 +83,7 @@
     }
 
     function sendTo2FA() {
-        console.log('Redirecionar para outra rota ... 2fa.html rn ');
-
+        window.location.href = "2fa.html";
     }
 
 
