@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Autenticação por Telefone com Firebase</title>
+    <script src="https://www.gstatic.com/firebasejs/9.19.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.19.0/firebase-auth-compat.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=explicit" async defer></script>
+    <script src="script.js"></script>
+</head>
+<body>
+    <input type="tel" id="phoneNumber" placeholder="Seu telefone (+55 XX YYYYYYYYY)">  
+    <button onclick="signInWithPhone()">Entrar por Telefone</button>
+    <div id="recaptchaContainer"></div>
+
+    <div id="verificationContainer" style="display:none;">
+        <input type="text" id="verificationCode" placeholder="Digite o código">
+        <button onclick="verifyCode()">Verificar</button>
+    </div>
+
+    <div id="zap"></div>
+</body>
+</html>
