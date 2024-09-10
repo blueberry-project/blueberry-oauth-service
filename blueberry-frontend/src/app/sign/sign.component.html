@@ -1,0 +1,85 @@
+<div class="flex flex-col min-h-screen bg-gradient-to-b from-blue-800 to-purple-900">
+    <div class="flex justify-center items-center p-8">
+        <div class="bg-gray-800 p-8 rounded-lg flex flex-col items-center justify-center shadow-lg max-w-lg w-full mb-8">
+            <h2 class="text-white text-3xl font-semibold">Painel de administração</h2>
+             <br>
+             <h4 class="text-white text-2xl font-semibold">Criação de conta</h4>
+             
+        </div>
+    </div>
+
+    <div class="flex justify-center items-start w-full px-8" >
+        <div class="flex flex-row w-full max-w-4xl space-x-8">
+            <!-- Lado esquerdo -->
+            <div class="bg-gray-800 p-8 rounded-lg shadow-lg flex-1">
+                <
+                <div class="mb-4">
+                    <label for="nome" class="block text-gray-400 text-sm font-bold mb-2">Nome *</label>
+                    <input type="text" id="nome"
+                        class="bg-gray-700 border border-gray-600 text-white rounded-lg w-full py-3 px-4 focus:outline-none focus:border-blue-500"
+                        placeholder="Digite seu nome" [(ngModel)]="nome">
+                </div>
+
+
+
+                <div class="mb-4">
+                    <label for="password" class="block text-gray-400 text-sm font-bold mb-2">Senha *</label>
+                    <input type="password" id="password"
+                        class="bg-gray-700 border border-gray-600 text-white rounded-lg w-full py-3 px-4 focus:outline-none focus:border-blue-500"
+                        placeholder="Digite sua senha" [(ngModel)]="password">
+                </div>
+
+                <div class="mb-6">
+                    <label for="passwordConfirm" class="block text-gray-400 text-sm font-bold mb-2">Confirmar Senha *</label>
+                    <input type="password" id="passwordConfirm"
+                        class="bg-gray-700 border border-gray-600 text-white rounded-lg w-full py-3 px-4 focus:outline-none focus:border-blue-500"
+                        placeholder="Digite sua senha novamente" [(ngModel)]="passwordSecondConfirmation">
+                </div>
+                <div class="mb-4">
+                    <label for="userType" class="block text-gray-400 text-sm font-bold mb-2">Tipo do usuário *</label>
+                    <select id="userType"[(ngModel)]="userType"
+                        class="bg-gray-700 border border-gray-600 text-white rounded-lg w-full py-3 px-4 focus:outline-none focus:border-blue-500">
+                        <option value="ADMIN">Administrador</option>
+                        <option value="COMMON">Comum</option>
+                        <option value="COMPANY">Empresa</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Lado direito -->
+            <div class="bg-gray-800 p-8 rounded-lg shadow-lg flex-1">
+                <div class="mb-4">
+                    <label for="cpf" class="block text-gray-400 text-sm font-bold mb-2">CPF *</label>
+                    <input type="text" id="cpf" 
+                        class="bg-gray-700 border border-gray-600 text-white rounded-lg w-full py-3 px-4 focus:outline-none focus:border-blue-500"
+                        placeholder="123.456.789-10" [(ngModel)]="cpf">
+                </div>
+
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-400 text-sm font-bold mb-2">E-mail *</label>
+                    <input type="text" id="email"
+                        class="bg-gray-700 border border-gray-600 text-white rounded-lg w-full py-3 px-4 focus:outline-none focus:border-blue-500"
+                        placeholder="Digite seu e-mail" [(ngModel)]="email">
+                </div>
+
+
+                <div class="mb-4">
+                    <label for="userDocs" class="block text-gray-400 text-sm font-bold mb-2">Documentação do usuário *</label>
+                    <select id="userDocs" [(ngModel)]="userDocs"
+                        class="bg-gray-700 border border-gray-600 text-white rounded-lg w-full py-3 px-4 focus:outline-none focus:border-blue-500">
+                        <option value="UNDEFINED">Indefinida</option>
+                        <option value="LEGAL_PERSON">Pessoa Legal</option>
+                        <option value="PHYSICAL_PERSON">Pessoa Física</option>
+                    </select>
+                </div>
+                
+
+                <div>
+                    <button type="submit"
+                        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg w-full transition duration-300 ease-in-out"
+                        (click)="createAccount()">Criar conta</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

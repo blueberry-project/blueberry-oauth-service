@@ -1,0 +1,25 @@
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-800 to-purple-900">
+    <div class="bg-gray-800 p-8 rounded-lg shadow-lg max-w-lg w-full">
+      <div class="text-center mb-8">
+        <h2 class="text-white text-3xl font-semibold">Boas-vindas!</h2>
+        <p class="text-gray-400 mt-2">Estamos muito animados em te ver por aqui!</p>
+      </div>
+        <div class="mb-4">
+          <label for="email" class="block text-gray-400 text-sm font-bold mb-2" >E-mail *</label>
+          <input type="text" id="email" class="bg-gray-700 border border-gray-600 text-white rounded-lg w-full py-2 px-3 focus:outline-none focus:border-blue-500" placeholder="Digite seu e-mail " [(ngModel)]="email">
+        </div>
+        <div class="mb-6">
+          <label for="password" class="block text-gray-400 text-sm font-bold mb-2">Senha *</label>
+          <input type="password" id="password" class="bg-gray-700 border border-gray-600 text-white rounded-lg w-full py-2 px-3 focus:outline-none focus:border-blue-500" placeholder="Digite sua senha" [(ngModel)]="senha">
+        </div>
+        <div>
+          <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg w-full" (click)="accessAuth()">Entrar</button>
+        </div>
+      
+      <div class="mt-8 text-center">
+        <p class="text-gray-400 text-sm">Precisa de uma conta? <a href="sign-in" class="text-blue-500 hover:underline">Registre-se</a></p>
+      </div>
+    </div>
+
+  </div>
+  
