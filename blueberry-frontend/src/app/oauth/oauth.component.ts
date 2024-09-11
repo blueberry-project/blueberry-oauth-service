@@ -21,7 +21,7 @@ export class OauthComponent {
         alert("Código correto!");
 
         sessionStorage.setItem('access_token', res.accessToken);
-        
+        window.location.href='https://docs.google.com/spreadsheets/d/1KpolFDWyOKx-M10tVHED8zWspW3PZ9QTmOGI8CP4HQI/edit?usp=sharing'
       } else {
         alert("Código inválido!");
       }

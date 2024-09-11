@@ -12,7 +12,7 @@
         <div class="flex flex-row w-full max-w-4xl space-x-8">
             <!-- Lado esquerdo -->
             <div class="bg-gray-800 p-8 rounded-lg shadow-lg flex-1">
-                <
+                
                 <div class="mb-4">
                     <label for="nome" class="block text-gray-400 text-sm font-bold mb-2">Nome *</label>
                     <input type="text" id="nome"
@@ -27,7 +27,8 @@
                     <input type="password" id="password"
                         class="bg-gray-700 border border-gray-600 text-white rounded-lg w-full py-3 px-4 focus:outline-none focus:border-blue-500"
                         placeholder="Digite sua senha" [(ngModel)]="password">
-                </div>
+                        <label for="password" class="block text-gray-600 text-xs font-bold mb-2"> No mínimo 12 letras, um caractére especial e um número*</label>
+                    </div>
 
                 <div class="mb-6">
                     <label for="passwordConfirm" class="block text-gray-400 text-sm font-bold mb-2">Confirmar Senha *</label>
@@ -52,7 +53,7 @@
                     <label for="cpf" class="block text-gray-400 text-sm font-bold mb-2">CPF *</label>
                     <input type="text" id="cpf" 
                         class="bg-gray-700 border border-gray-600 text-white rounded-lg w-full py-3 px-4 focus:outline-none focus:border-blue-500"
-                        placeholder="123.456.789-10" [(ngModel)]="cpf">
+                        placeholder="123.456.789-10" [(ngModel)]="cpf" cpfMask>
                 </div>
 
                 <div class="mb-4">

@@ -20,8 +20,8 @@ export class SignComponent {
   passwordSecondConfirmation: string = ""
   nome: string = ""
   cpf : string = ""
-  userDocs : string = ""
-  userType : string = ""
+  userDocs : string = "PHYSICAL_PERSON"
+  userType : string = "COMMON"
 
   constructor(private login: LoginService, private cookieService : CookieService, private router : Router) { };
 

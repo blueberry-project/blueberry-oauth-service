@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
 
-  private apiUrl = 'http://52.200.151.98';
+  private apiUrl = 'http://18.214.203.117';
 
   constructor(private http: HttpClient) { }
 
@@ -18,7 +18,7 @@ export class LoginService {
 
   create(data : any  ): Observable<any> {
 
-    const token = sessionStorage.getItem('access_token');
+    const token = localStorage.getItem('access_token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
@@ -44,13 +44,22 @@ export class LoginService {
 
 
   verificationUserType(){
-    const token = sessionStorage.getItem('access_token');
+    const token = localStorage.getItem('access_token');
+  
+    if (!token) {
+      console.error('Token não encontrado no sessionStorage');
+      
+    }
+  
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-
-    return this.http.get(this.apiUrl + '/users/profile', {headers})
+  
+    console.log(headers);
+  
+    return this.http.get(this.apiUrl + '/users/profile', { headers })
   }
+  
 
   setAccessToken(token: string): void {
     sessionStorage.setItem('access_token', token);

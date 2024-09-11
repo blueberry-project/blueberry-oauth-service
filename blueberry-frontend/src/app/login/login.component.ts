@@ -43,29 +43,35 @@ export class LoginComponent {
       this.mfaEnabled = res.mfaEnabled;
       this.verificationToken = res.verificationToken;
 
-      this.verificationAccountType()
+      localStorage.setItem('access_token', this.token);
+      sessionStorage.setItem('verification_token', this.verificationToken);
+  
+      if (this.token != undefined) {
+        return this.verificationAccountType()
+      }
 
+      alert("Logado como usuário ")
+      this.router.navigate(['/oauth'])
+      return
     });
   }
 
   verificationAccountType() {
-    localStorage.setItem('access_token', this.token);
-    sessionStorage.setItem('verification_token', this.verificationToken);
-  
-    if (this.token != undefined) {
-     
-      this.loginService.verificationUserType().subscribe((res: any) => {
-        if (res.userType == 'ADMIN') {
-          alert("Logado como administrador")
-          this.router.navigate(['/sign-in'])
-          return
-        }
-      })
-    }
-    
-    alert("Logado como usuário ")
-    this.router.navigate(['/oauth'])
-    return
+   
+
+
+    this.loginService.verificationUserType().subscribe((res: any) => {
+
+      if (res.userType == 'ADMIN') {
+        alert("Logado como administrador")
+        this.router.navigate(['/sign-in'])
+        return
+      }
+
+
+    })
+
+
 
   }
 
