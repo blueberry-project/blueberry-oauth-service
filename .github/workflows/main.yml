@@ -1,0 +1,45 @@
+name: Deploy via SSH
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  Deploy:
+    name: Deploy to EC2
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2 
+      - name: Build & Deploy
+        env:
+            PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+            HOSTNAME: ${{secrets.EC2_HOST}}
+            USER_NAME: ${{secrets.EC2_USER}}
+      
+        run: |
+          echo "$PRIVATE_KEY" > private_key && chmod 400 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+              # sets github user
+              eval "$(ssh-agent -s)"
+              ssh-add git
+
+              # access project directory
+              cd blueberry-oauth-service
+          
+              # pull changes from repository
+              git pull origin main
+          
+              # delete all docker containers to ensure only one container
+              docker rm -f $(docker ps -aq)
+          
+              # delete all docker images to ensure only one image
+              docker rmi -f $(docker images -aq)
+          
+              # build docker image
+              docker build -t blueberry-oauth-service:latest .
+          
+              # run new docker image
+              sudo docker run -d --restart unless-stopped -p 80:8080  blueberry-oauth-service:latest
+              '
