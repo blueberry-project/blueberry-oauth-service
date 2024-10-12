@@ -43,4 +43,7 @@ jobs:
           
               # run new docker image
               sudo docker run -d --restart unless-stopped -p 80:4200 blueberry-oauth-service:latest
+
+              # list all containers
+              docker ps -a
               '
