@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';  // adicione isto
 import { CpfMaskDirective } from './sign/cpf-mask.directive';
-
+import { NavbarComponent } from './navbar/navbar.component';
 @NgModule({
   declarations: [
     // componentes
@@ -10,7 +10,8 @@ import { CpfMaskDirective } from './sign/cpf-mask.directive';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,  // adicione isto
+    HttpClientModule,  
+    NavbarComponent
   ],
   providers: [],
   bootstrap: [/* seu componente principal */]

@@ -1,22 +1,31 @@
-<div class="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-800 to-purple-900">
-    <div class="bg-gray-800 p-8 rounded-lg shadow-lg max-w-lg w-full">
-      <div class="text-center mb-8">
-        <h2 class="text-white text-3xl font-semibold">Boas-vindas!</h2>
-        <p class="text-gray-400 mt-2">Estamos muito animados em te ver por aqui!</p>
-      </div>
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-100 via-white to-blue-200">
+    <div class="bg-white p-8 rounded-2xl shadow-2xl max-w-md w-full">
+        <div class="text-center mb-8">
+            <div class="flex justify-center">
+                <img src="Logo.svg" alt="Logo">
+            </div>
+            <h2 class="text-gray-800 text-3x1l font-bold">Boas-vindas!</h2>
+            <p class="text-gray-600 mt-2">Estamos muito animados em te ver por aqui!</p>
+        </div>
+
         <div class="mb-4">
-          <label for="email" class="block text-gray-400 text-sm font-bold mb-2" >E-mail *</label>
-          <input type="text" id="email" class="bg-gray-700 border border-gray-600 text-white rounded-lg w-full py-2 px-3 focus:outline-none focus:border-blue-500" placeholder="Digite seu e-mail " [(ngModel)]="email">
+            <label for="email" class="block text-gray-600 text-sm font-semibold mb-2">E-mail *</label>
+            <input type="text" id="email"
+                class="bg-gray-100 border border-gray-300 text-gray-700 rounded-lg w-full py-3 px-4 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+                placeholder="Digite seu e-mail" [(ngModel)]="email">
         </div>
+
         <div class="mb-6">
-          <label for="password" class="block text-gray-400 text-sm font-bold mb-2">Senha *</label>
-          <input type="password" id="password" class="bg-gray-700 border border-gray-600 text-white rounded-lg w-full py-2 px-3 focus:outline-none focus:border-blue-500" placeholder="Digite sua senha" [(ngModel)]="senha">
+            <label for="password" class="block text-gray-600 text-sm font-semibold mb-2">Senha *</label>
+            <input type="password" id="password"
+                class="bg-gray-100 border border-gray-300 text-gray-700 rounded-lg w-full py-3 px-4 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+                placeholder="Digite sua senha" [(ngModel)]="senha">
         </div>
+
         <div>
-          <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg w-full" (click)="accessAuth()">Entrar</button>
+            <button type="submit"
+                class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg w-full transition duration-300 ease-in-out"
+                (click)="accessAuth()">Entrar</button>
         </div>
-
     </div>
-
-  </div>
-
+</div>
