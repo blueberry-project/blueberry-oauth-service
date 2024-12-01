@@ -16,7 +16,7 @@ export class LoginService {
     return this.http.post(this.apiUrl + "/authentication", { "email": email, "password": senha });
   }
 
-  create(data : any  ): Observable<any> {
+  create(data: any): Observable<any> {
 
     const token = localStorage.getItem('access_token');
     const headers = new HttpHeaders({
@@ -45,21 +45,21 @@ export class LoginService {
 
   verificationUserType(){
     const token = localStorage.getItem('access_token');
-  
+
     if (!token) {
       console.error('Token não encontrado no sessionStorage');
-      
+
     }
-  
+
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-  
+
     console.log(headers);
-  
+
     return this.http.get(this.apiUrl + '/users/profile', { headers })
   }
-  
+
 
   setAccessToken(token: string): void {
     sessionStorage.setItem('access_token', token);

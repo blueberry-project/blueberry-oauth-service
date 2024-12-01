@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { LoginService } from '../login.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -30,52 +31,42 @@ export class LoginComponent {
   }
 
   accessAuth() {
-    console.log(this.email, this.senha);
-    const emailSyntax: boolean = this.email.includes('@') && this.email.includes('.com');
-    if (!emailSyntax) {
-      alert("Email inválido");
-      return;
-    }
+    this.loginService.login(this.email, this.senha).subscribe({
+      next: res => {
+        this.token = res.accessToken;
+        this.mfaEnabled = res.mfaEnabled;
+        this.verificationToken = res.verificationToken;
 
-    this.loginService.login(this.email, this.senha).subscribe(res => {
-      console.log(res);
-      this.token = res.accessToken;
-      this.mfaEnabled = res.mfaEnabled;
-      this.verificationToken = res.verificationToken;
+        localStorage.setItem('access_token', this.token);
+        sessionStorage.setItem('verification_token', this.verificationToken);
 
-      localStorage.setItem('access_token', this.token);
-      sessionStorage.setItem('verification_token', this.verificationToken);
-  
-      if (this.token != undefined) {
-        return this.verificationAccountType()
+        if (this.token != undefined) {
+          return this.verificationAccountType()
+        }
+
+        this.router.navigate(['/oauth'])
+        return;
+      },
+      error: err => {
+        let message = err.status >= 500
+          ? "Ocorreu um erro no servidor"
+          : "Email e/ou senha incorretos"
+
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro',
+          text: message,
+        });
       }
-
-      alert("Logado como usuário ")
-      this.router.navigate(['/oauth'])
-      return
     });
   }
 
   verificationAccountType() {
-   
-
-
     this.loginService.verificationUserType().subscribe((res: any) => {
-
       if (res.userType == 'ADMIN') {
-        alert("Logado como administrador")
         this.router.navigate(['/sign-in'])
         return
       }
-
-
     })
-
-
-
-  }
-
-  redirect(route: string): void {
-    this.router.navigate([route]);
   }
 }

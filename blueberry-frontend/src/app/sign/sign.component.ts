@@ -37,7 +37,7 @@ export class SignComponent {
 
   // Gerador de nome simples
   generateName() {
-    const firstNames = ["Ana", "Carlos", "Eduardo", "Fernanda", "João", "Lucas", "Maria", "Paulo", "Rafaela"];
+    const firstNames = ["Ana", "Carlos", "Eduardo", "Fernanda", "Manoel", "Lucas", "Maria", "Paulo", "Rafaela"];
     const lastNames = ["Silva", "Souza", "Oliveira", "Pereira", "Almeida", "Costa", "Ferreira"];
     const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
     const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
@@ -82,10 +82,16 @@ export class SignComponent {
   }
 
   createAccount() {
-    if (this.password !== this.passwordSecondConfirmation) {
-      Swal.fire('Erro', 'As senhas não coincidem!', 'error');
-      return;
+    const validationError = this.validateNewUserData()
+    if (validationError.length > 0) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro',
+        text: validationError,
+      });
+      return
     }
+
     this.login.create({
       name: this.nome,
       email: this.email,
@@ -93,23 +99,53 @@ export class SignComponent {
       cpf: this.cpf,
       userDocs: this.userDocs,
       userType: this.userType
-    }).subscribe(res => {
-      sessionStorage.setItem('mfa_secret_uri', res.mfaSecretImageUri);
-      Swal.fire({
-        icon: 'success',
-        title: 'Usuário criado!',
-        text: 'O usuário foi criado com sucesso.',
-      }).then(() => {
-        this.router.navigate(['/create-oauth']);
-      });
-    }, error => {
-      Swal.fire({
-        icon: 'error',
-        title: 'Erro',
-        text: 'Ocorreu um erro ao criar o usuário.',
-      });
+    }).subscribe({
+      next: res => {
+        sessionStorage.setItem('mfa_secret_uri', res.mfaSecretImageUri);
+        Swal.fire({
+          icon: 'success',
+          title: 'Usuário criado!',
+          text: 'O usuário foi criado com sucesso.',
+        }).then(() => {
+          this.router.navigate(['/create-oauth']);
+        });
+      },
+      error: error => {
+        let message = error.status >= 500
+          ? 'Ocorreu um erro no servidor.'
+          : error.error.message
+
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro',
+          text: message,
+        });
+      }
     });
   }
 
+  validateNewUserData(): string {
+    if (this.nome === "") {
+      return 'Nome é obrigatório';
+    }
+
+    if (this.email === "") {
+      return 'Email é obrigatório';
+    }
+
+    if (this.cpf === "") {
+      return 'CPF é obrigatório';
+    }
+
+    if (this.password === "") {
+      return 'Senha é obrigatória';
+    }
+
+    if (this.password !== this.passwordSecondConfirmation) {
+      return 'As senhas não coincidem!';
+    }
+
+    return "";
+  }
 }
 
